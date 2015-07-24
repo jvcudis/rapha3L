@@ -22,7 +22,7 @@ var stickyPath = function (points) {
 	return path;
 }
 
-Raphael.fn.sticky = function() {
+Raphael.fn.sticky = function(points) {
 	return this.path(stickyPath(arguments));
 };
 
