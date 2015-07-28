@@ -6,9 +6,8 @@
 		lowerBoard: [],
 
 		initialize: function() {
-			this.paper = Raphael('paper', defs.paper.w, defs.paper.h);
-			this.paper.setViewBox(0, 0, defs.view.w, defs.view.h, true);
-			this.paper.canvas.setAttribute('preserveAspectRatio', 'none');
+			this.paper = Raphael('paper', 900, 700);
+			this.paper.setViewBox(0, 0, 900, 700, true);
 
 			//this.setupCardDeck();
 			this.setupBoard();
@@ -22,16 +21,23 @@
 
 		setupBoard: function() {
 
+			// SETTING UP BOARD USING SVG FROM FLA FILE
+			this.paper.backgroundBuilder.buildBoard(this);
+
+			// SETTING UP BOARD USING CUSTOM SVG SHAPES AND TEXT
 			// Setup board labels
-			var label1 = this.paper.label(defs.board.upperRowX, defs.board.upperRowY - 37).attr({fill: '#FF9700', stroke: "#ffffff"});
-			var label1 = this.paper.label(defs.board.upperRowX + 84, defs.board.upperRowY - 37).attr({fill: '#FF9700', stroke: "#ffffff"});
-			var label1 = this.paper.label(defs.board.upperRowX + (84 * 2), defs.board.upperRowY - 37).attr({fill: '#FF9700', stroke: "#ffffff"});
+			// var label1 = this.paper.label(defs.board.upperRowX, defs.board.upperRowY - 37, defs.sticky.w, 35, 8, 8, 0, 0).attr({fill: '#FF9700', stroke: "#ffffff"});
+			// var label2 = this.paper.label(defs.board.upperRowX + 84, defs.board.upperRowY - 37, defs.sticky.w, 35, 8, 8, 0, 0).attr({fill: '#FF9700', stroke: "#ffffff"});
+			// var label3 = this.paper.label(defs.board.upperRowX + (84 * 2), defs.board.upperRowY - 37, defs.sticky.w, 35, 8, 8, 0, 0).attr({fill: '#FF9700', stroke: "#ffffff"});
+
+			// var label4 = this.paper.label(defs.board.upperRowX + (84 * 3), defs.board.upperRowY, 15, defs.sticky.h, 0, 9, 9, 0).attr({fill: '#FFC49C', stroke: "#ffffff"});
+			// var label5 = this.paper.label(defs.board.upperRowX + (84 * 3), (defs.board.upperRowY * 3) + 27, 15, defs.sticky.h, 0, 9, 9, 0).attr({fill: '#FFCC33', stroke: "#ffffff"});
 
 			// Setup stickies on board
 			// TODO: Improve this later by adding all stickies into a SET instead of an array
 			// and then add an EL attribute to the whole SET instead of per sticky
-			this.upperBoard = this.addStickies('upper');
-			this.lowerBoard = this.addStickies('lower');
+			// this.upperBoard = this.addStickies('upper');
+			// this.lowerBoard = this.addStickies('lower');
 		},
 
 		addStickies: function(where) {
@@ -42,7 +48,6 @@
 			if (where == 'upper') {
 				x1 = defs.board.upperRowX;
 				y = defs.board.upperRowY;
-				attrs = defs.sticky.upperAttrs;
 			} else {
 				x1 = defs.board.lowerRowX;
 				y = defs.board.lowerRowY;
@@ -69,20 +74,24 @@
 
 		setupActionPanel: function() {
 
-			var panelBackground;
+			// SETTING UP ACTION PANEL USING SVG FROM FLA FILE
+			this.paper.backgroundBuilder.buildActionPanel(this);
 
-			// Initialize action panel
-			this.actionPanel = this.paper.set();
+			// SETTING UP ACTION PANEL USING CUSTOM SVG SHAPES AND TEXT
+			// var panelBackground;
 
-			// Setup panel element
-			panelBackground = this.paper.rect(defs.actionPanel.x, defs.actionPanel.y, defs.actionPanel.w, defs.actionPanel.h);
-			panelBackground.attr(defs.actionPanel.attrs);
+			// // Initialize action panel
+			// this.actionPanel = this.paper.set();
 
-			// Add action buttons
-			// TODO: Use either svg images or svg path for icons
-			var showDeckBtn = this.paper.button(['./svg/bitmap225.png',315,390,30,25]).create();
-			var removeAllCardsBtn = this.paper.button(['./svg/bitmap222.png',350,390,30,25]).create();
-			var showTempCardPanelBtn = this.paper.button(['./svg/bitmap214.png',385,390,15,25]).create();
-			var hideTempCardsBtn = this.paper.button(['./svg/bitmap217.png',405,390,15,25]).create();
+			// // Setup panel element
+			// panelBackground = this.paper.rect(defs.actionPanel.x, defs.actionPanel.y, defs.actionPanel.w, defs.actionPanel.h);
+			// panelBackground.attr(defs.actionPanel.attrs);
+
+			// // Add action buttons
+			// // TODO: Use either svg images or svg path for icons
+			// var showDeckBtn = this.paper.button(['./svg/bitmap225.png',315,390,30,25]).create();
+			// var removeAllCardsBtn = this.paper.button(['./svg/bitmap222.png',350,390,30,25]).create();
+			// var showTempCardPanelBtn = this.paper.button(['./svg/bitmap214.png',385,390,15,25]).create();
+			// var hideTempCardsBtn = this.paper.button(['./svg/bitmap217.png',405,390,15,25]).create();
 		}
 	};

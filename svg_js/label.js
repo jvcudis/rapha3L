@@ -8,12 +8,12 @@ var labelPath = function (points) {
 	// Rectangle properties
 	var x = points[0];
 	var y = points[1];
-	var w = defs.sticky.w;
-	var h = 35;
-	var r1 = 8;
-	var r2 = 8;
-	var r3 = 0;
-	var r4 = 0;
+	var w = points[2];
+	var h = points[3];
+	var r1 = points[4];
+	var r2 = points[5];
+	var r3 = points[6];
+	var r4 = points[7];
 
 	var path = [];
 

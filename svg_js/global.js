@@ -1,6 +1,6 @@
 var defs = {
 	paper: {
-		w: 500,
+		w: 1000,
 		h: 260
 	},
 	view: {
