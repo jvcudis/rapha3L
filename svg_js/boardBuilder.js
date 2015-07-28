@@ -30,10 +30,13 @@ Raphael.fn.backgroundBuilder = {
 		this.setLabels(backgroundPaths.btn_right);
 
 		// Setup the static texts
-		this.setStaticTexts();
+		this.setStaticText();
 
+		// Setup image pattern size
+		this.setImagePattern('#static_circle path', 0.5);
+		this.setImagePattern('#static_arrow path', 0.5);
 	},
-	setStaticTexts: function() {
+	setStaticText: function() {
 		var data = backgroundPaths.static_texts;
 
 		for (var cnt = 0; cnt < _.size(data); cnt++) {
@@ -83,6 +86,7 @@ Raphael.fn.backgroundBuilder = {
 				}]
 			);
 		}
+
 	},
 	addNode: function(g_id, element) {
 
@@ -93,7 +97,21 @@ Raphael.fn.backgroundBuilder = {
 			return;
 		}
 
-		node.add(_paper.path(element[0].path).attr(element[0].attrs));
+		node.add(_paper
+			.path(element[0].path)
+			.attr(element[0].attrs));
+
+		return node;
+	},
+	addClickableNode: function(g_id, element, callback) {
+		var node = _paper.g().create(g_id);
+
+		node.add(_paper
+			.path(element[0].path)
+			.attr(element[0].attrs)
+			.click(callback));
+
+		return node;
 	},
 	buildActionPanel: function(app) {
 		// Initialize all extension-wide elements
@@ -103,10 +121,16 @@ Raphael.fn.backgroundBuilder = {
 		this.setPanelBackground(backgroundPaths.panel.background);
 
 		// Setup panel buttons
-		this.setPanelButtons();
+		this.setPanelButtons(backgroundPaths.panel.buttons, function() { console.log('cakk'); });
+
+		// Setup image pattern size
+		this.setImagePattern('#btn-open-deck path', 0.5);
+		this.setImagePattern('#btn-clear-board path', 0.5);
+		this.setImagePattern('#btn-open-template path', 0.5);
+		this.setImagePattern('#btn-hide-template path', 0.5);
 	},
 	setPanelBackground: function(data) {
-
+		// Add panel background node
 		this.addNode(
 			data.id,
 			[{
@@ -115,8 +139,44 @@ Raphael.fn.backgroundBuilder = {
 			}]
 		);
 	},
-	setPanelButtons: function() {
+	setPanelButtons: function(data, callback) {
 
+		var btn = {};
+
+		for (var cnt = 0; cnt < _.size(data); cnt++) {
+			var dataEl = data['_0' + (cnt + 1)];
+			btn = this.addClickableNode(
+				dataEl.id,
+				[{
+					path: dataEl.path,
+					attrs: dataEl.attrs
+				}],
+				callback
+			);
+			btn.transform(dataEl.transStr);
+		}
+
+	},
+	setImagePattern: function(id, ratio) {
+		var pathEl = $(id);
+		var pattern = $(pathEl).attr('fill');
+
+		if (pattern) {
+			pattern = pattern.replace('url(', '').replace(')', '');
+			pattern = $(pattern);
+		}
+
+		setTimeout(function() {
+			var newW = $(pattern)[0].getAttribute('width') * ratio;
+			var newH = $(pattern)[0].getAttribute('height') * ratio;
+
+			$(pattern)[0].setAttribute('width', newW);
+			$(pattern)[0].setAttribute('height', newH);
+
+			$(pattern).find('image')[0].setAttribute('width', newW);
+			$(pattern).find('image')[0].setAttribute('height', newH);
+			$(pattern).find('image')[0].setAttribute('preserveAspectRatio', 'defer none meet');
+		}, 1000);
 	}
 };
 

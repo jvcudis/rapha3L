@@ -1,3 +1,4 @@
+// WARNING: Do not touch this file if you don't want your life ruined!
 var backgroundPaths = {
 	btn_top: {
 		_01: {
@@ -160,7 +161,7 @@ var backgroundPaths = {
 			id: 'static_circle',
 			path: 'M 867.05 61.85 L 867.05 40.3 844 40.3 844 61.85 867.05 61.85 Z',
 			attrs: {
-				fill: "url(#blue_dot)",
+				fill: "url('/svg/bitmap38.png')",
 				stroke: 'none'
 			}
 		},
@@ -168,7 +169,7 @@ var backgroundPaths = {
 			id: 'static_arrow',
 			path: 'M 834.65 43.4 L 834.6 43.35 817.05 43.35 817 43.4 817 59.4 817.05 59.45 834.6 59.45 834.65 59.4 834.65 43.4 Z',
 			attrs: {
-				fill: "url(#yellow_arrow)",
+				fill: "url('/svg/bitmap37.png')",
 				stroke: 'none'
 			}
 		}
@@ -183,7 +184,46 @@ var backgroundPaths = {
 			}
 		},
 		buttons: {
-
+			_01: {
+				id: 'btn-open-deck',
+				path: 'M 82 41 L 82 0 0 0 0 41 82 41 Z',
+				attrs: {
+					fill: "url('/svg/bitmap225.png')",
+					stroke: 'none',
+					cursor: 'pointer'
+				},
+				transStr: 'matrix( 1, 0, 0, 1, 576,622)'
+			},
+			_02: {
+				id: 'btn-clear-board',
+				path: 'M 82 41 L 82 0 0 0 0 41 82 41 Z',
+				attrs: {
+					fill: "url('/svg/bitmap222.png')",
+					stroke: 'none',
+					cursor: 'pointer'
+				},
+				transStr: 'matrix( 1, 0, 0, 1, 673,622)'
+			},
+			_03: {
+				id: 'btn-open-template',
+				path: 'M 41 41 L 41 0 0 0 0 41 41 41 Z',
+				attrs: {
+					fill: "url('/svg/bitmap214.png')",
+					stroke: 'none',
+					cursor: 'pointer'
+				},
+				transStr: 'matrix( 1, 0, 0, 1, 768,622)'
+			},
+			_04: {
+				id: 'btn-hide-template',
+				path: 'M 41 41 L 41 0 0 0 0 41 41 41 Z',
+				attrs: {
+					fill: "url('/svg/bitmap217.png')",
+					stroke: 'none',
+					cursor: 'pointer'
+				},
+				transStr: 'matrix( 1, 0, 0, 1, 824,622)'
+			}
 		}
 	}
 };

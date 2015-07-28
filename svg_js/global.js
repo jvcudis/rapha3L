@@ -53,7 +53,3 @@ var defs = {
 		}
 	}
 };
-
-// orange: #FF9700
-// gold: #FFCC33
-// saturated gold: #FFC49C
