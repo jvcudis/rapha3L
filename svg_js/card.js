@@ -1,9 +1,11 @@
 /* Card Object */
 /* A Card refers to those editable white cards. */
 
-(function() {
+(function(R) {
 
-Raphael.fn.card = function(points) {
+
+
+R.fn.card = function(points) {
 
 	this.x = 100;
 	this.y = 100;
@@ -15,4 +17,4 @@ Raphael.fn.card = function(points) {
 	return this;
 };
 
-})();
+})(Raphael);

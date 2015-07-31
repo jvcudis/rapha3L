@@ -4,29 +4,29 @@ R.fn.pattern = function() {
 
   var _defs = this.defs;
   var _pattern = {};
-  var _use = {};
+  var _img = {};
 
-  this.create = function(args1, args2) {
-  	_use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  this.create = function(patAttrs, imgAttrs) {
     _pattern = document.createElementNS("http://www.w3.org/2000/svg", "pattern");
 
+    _img = this.img().create('img-mini-card', imgAttrs);
+
     // Set default attributes
-    if (args1 != undefined) {
-      _pattern.setAttribute('id', args1.id);
-      _pattern.setAttribute('patternUnits', args1.patternUnits);
-      _pattern.setAttribute('patternTransform', args1.patternTransform);
-      _pattern.setAttribute('width', args1.width);
-      _pattern.setAttribute('height', args1.height);
+    if (patAttrs != undefined) {
+      _pattern.setAttribute('id', patAttrs.id);
+      _pattern.setAttribute('patternUnits', patAttrs.patternUnits);
+      _pattern.setAttribute('patternTransform', patAttrs.patternTransform);
+      _pattern.setAttribute('patternContentUnits', patAttrs.patternContentUnits);
+      _pattern.setAttribute('width', patAttrs.width);
+      _pattern.setAttribute('height', patAttrs.height);
+      _pattern.setAttribute('x', patAttrs.x);
+      _pattern.setAttribute('y', patAttrs.y);
     }
 
-    if (args2 != undefined) {
-    	_use.setAttribute('xlink:href', args2.link);
-    }
-
+    _pattern.appendChild(_img);
     _defs.appendChild(_pattern);
-    _pattern.appendChild(_use);
 
-    return this;
+    return _pattern;
   }
 
   return this;

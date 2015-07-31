@@ -94,7 +94,7 @@ Raphael.fn.backgroundBuilder = {
 
 		if (element.length > 1) {
 			for (var cnt in element) node.add(_paper.path(element[cnt].path).attr(element[cnt].attrs));
-			return;
+			return node;
 		}
 
 		node.add(_paper
@@ -113,6 +113,16 @@ Raphael.fn.backgroundBuilder = {
 
 		return node;
 	},
+	// addDraggableNode: function(g_id, element, callback) {
+	// 	var node = _paper.g().create(g_id);
+
+	// 	node.add(_paper
+	// 		.path(element[0].path)
+	// 		.attr(element[0].attrs)
+	// 		.click(callback));
+
+	// 	return node;
+	// },
 	buildActionPanel: function(app) {
 		// Initialize all extension-wide elements
 		this.initCanvas(app);
@@ -120,8 +130,43 @@ Raphael.fn.backgroundBuilder = {
 		// Setup panel background
 		this.setPanelBackground(backgroundPaths.panel.background);
 
-		// Setup panel buttons
-		this.setPanelButtons(backgroundPaths.panel.buttons, function() { console.log('cakk'); });
+		// Setup panel buttons with the same events
+		// this.setPanelButtons(
+		// 	backgroundPaths.panel.buttons,
+		// 	function() { console.log('insert actual click event here.'); }
+		// );
+
+		// Open deck
+		this.setPanelButtonAction(
+			backgroundPaths.panel.buttons._01,
+			function() {
+				console.log('Open Deck Button clicked!');
+			}
+		);
+
+		// Clear board
+		this.setPanelButtonAction(
+			backgroundPaths.panel.buttons._02,
+			function() {
+				console.log('Clear Board Button clicked!');
+			}
+		);
+
+		// Open template
+		this.setPanelButtonAction(
+			backgroundPaths.panel.buttons._03,
+			function() {
+				console.log('Open Template Button clicked!');
+			}
+		);
+
+		// Hide template
+		this.setPanelButtonAction(
+			backgroundPaths.panel.buttons._04,
+			function() {
+				console.log('Hide Template Button clicked!');
+			}
+		);
 
 		// Setup image pattern size
 		this.setImagePattern('#btn-open-deck path', 0.5);
@@ -138,6 +183,17 @@ Raphael.fn.backgroundBuilder = {
 				attrs: data.attrs
 			}]
 		);
+	},
+	setPanelButtonAction: function(dataEl, callback) {
+		var btn = this.addClickableNode(
+			dataEl.id,
+			[{
+				path: dataEl.path,
+				attrs: dataEl.attrs
+			}],
+			callback
+		);
+		btn.transform(dataEl.transStr);
 	},
 	setPanelButtons: function(data, callback) {
 
@@ -176,7 +232,7 @@ Raphael.fn.backgroundBuilder = {
 			$(pattern).find('image')[0].setAttribute('width', newW);
 			$(pattern).find('image')[0].setAttribute('height', newH);
 			$(pattern).find('image')[0].setAttribute('preserveAspectRatio', 'defer none meet');
-		}, 1000);
+		}, 500);
 	}
 };
 

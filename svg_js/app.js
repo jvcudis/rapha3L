@@ -9,14 +9,12 @@
 			this.paper = Raphael('paper', 900, 700);
 			this.paper.setViewBox(0, 0, 900, 700, true);
 
-			//this.setupCardDeck();
 			this.setupBoard();
 			this.setupActionPanel();
+			this.setupCardDeck();
 		},
-
 		setupCardDeck: function() {
-			// Initialize card deck
-			this.deck = this.paper.set();
+			this.deck = this.paper.deck(this).initialize();
 		},
 
 		setupBoard: function() {
@@ -73,9 +71,7 @@
 		},
 
 		setupActionPanel: function() {
-
-			// SETTING UP ACTION PANEL USING SVG FROM FLA FILE
-			this.paper.backgroundBuilder.buildActionPanel(this);
+			this.actionPanel = this.paper.backgroundBuilder.buildActionPanel(this);
 
 			// SETTING UP ACTION PANEL USING CUSTOM SVG SHAPES AND TEXT
 			// var panelBackground;

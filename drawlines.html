@@ -19,9 +19,21 @@
 	<!-- for SVG Implementation -->
 	<script src="vendors/raphael-min.js" type="text/javascript"></script>
 
-	<!-- User Defined JS -->
+	<!-- SVG data -->
 	<script src="svg_js/paths.js" type="text/javascript"></script>
+	<script src="svg_js/data/boardPath.js" type="text/javascript"></script>
+	<script src="svg_js/data/actionPath.js" type="text/javascript"></script>
+	<script src="svg_js/data/deckPath.js" type="text/javascript"></script>
+
+	<!-- User Defined JS -->
 	<script src="svg_js/g.js" type="text/javascript"></script>
+	<script src="svg_js/events/draggable.js" type="text/javascript"></script>
+	<script src="svg_js/j3b/deck.js" type="text/javascript"></script>
+	<script src="svg_js/j3b/miniCard.js" type="text/javascript"></script>
+	<script src="svg_js/j3b/actionPanel.js" type="text/javascript"></script>
+	<script src="svg_js/j3b/panel.js" type="text/javascript"></script>
+
+
 	<script src="svg_js/img.js" type="text/javascript"></script>
 	<script src="svg_js/pattern.js" type="text/javascript"></script>
 
@@ -34,11 +46,11 @@
 	<script src="svg_js/app.js" type="text/javascript"></script>
 
 </head>
-<!-- <body> -->
 <body onload="DrawApp.initialize()">
 
 	<div class="container">
 		<div id="paper"></div>
 	</div><!-- /container -->
+
 </body>
 </html>
